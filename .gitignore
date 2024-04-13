@@ -1,0 +1,5 @@
+venv
+pr_pilot_README.md
+.idea
+*.iml
+.openapi-generator
