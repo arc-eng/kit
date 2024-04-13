@@ -4,3 +4,5 @@ pr_pilot_README.md
 *.iml
 .openapi-generator
 __pycache__
+pr_pilot.egg_info
+dist
