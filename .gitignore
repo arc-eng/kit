@@ -3,3 +3,4 @@ pr_pilot_README.md
 .idea
 *.iml
 .openapi-generator
+__pycache__
