@@ -1,16 +1,14 @@
 from setuptools import setup, find_packages
 
+# Read requirements.txt and use it for the install_requires parameter
+with open('requirements.txt') as f:
+    required = f.read().splitlines()
+
 setup(
     name='pr_pilot',
     version='1.0.0',
     packages=find_packages(),
-    install_requires=[
-        'pydantic==2.7.0',
-        'urllib3==2.2.1',
-        'python-dateutil==2.9.0',
-        'wheel==0.42.0',
-        'setuptools==69.1.1',
-    ],
+    install_requires=required,
     python_requires='>=3.6',
     author='Marco Lamina',
     author_email='marco@pr-pilot.ai',
