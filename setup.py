@@ -4,7 +4,8 @@ from setuptools import setup, find_packages
 
 # Read requirements.txt and use it for the install_requires parameter
 this_dir = path.abspath(path.dirname(__file__))
-with open(this_dir / 'requirements.txt') as f:
+requirements_path = path.join(this_dir, 'requirements.txt')
+with open(requirements_path) as f:
     required = f.read().splitlines()
 
 setup(
