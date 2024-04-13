@@ -1,7 +1,10 @@
+from os import path
+
 from setuptools import setup, find_packages
 
 # Read requirements.txt and use it for the install_requires parameter
-with open('requirements.txt') as f:
+this_dir = path.abspath(path.dirname(__file__))
+with open(this_dir / 'requirements.txt') as f:
     required = f.read().splitlines()
 
 setup(
