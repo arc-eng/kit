@@ -37,6 +37,19 @@ def set_github_action_output(key: str, value: str):
         logger.debug("GITHUB_OUTPUT environment variable is not set.")
 
 
+def set_github_step_summary(summary: str):
+    """Set the step summary for GitHub Actions."""
+    # Get the path to the environment file for outputs
+    output_file = os.getenv('GITHUB_STEP_SUMMARY')
+
+    # Ensure the output file path is available
+    if output_file is not None:
+        with open(output_file, "a") as file:
+            file.write(f"{summary}\n")
+    else:
+        logger.debug("GITHUB_STEP_SUMMARY environment variable is not set.")
+
+
 def create_task(repo: str, prompt: str, log=True) -> Task:
     """Create a task for the specified repository with the given prompt."""
     with pr_pilot.ApiClient(_get_config_from_env()) as api_client:
@@ -57,7 +70,7 @@ def get_task(task_id: str) -> Task:
         return api_instance.tasks_retrieve(task_id)
 
 
-def wait_for_result(task: Task, log=True) -> str:
+def wait_for_result(task: Task, log=True, write_step_summary=True) -> str:
     """Wait for the task to be completed and return the result."""
     start_time = time.time()
     while task.status not in ["completed", "failed"]:
@@ -68,4 +81,8 @@ def wait_for_result(task: Task, log=True) -> str:
         task = get_task(task.id)
 
         time.sleep(POLL_INTERVAL)
+    if write_step_summary:
+        dashboard_url = f"https://app.pr-pilot.ai/dashboard/tasks/{str(task.id)}/"
+        markdown_link = f"[Event Log]({dashboard_url})"
+        set_github_step_summary(f"{task.result}\n\n{markdown_link}")
     return task.result
