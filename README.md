@@ -24,19 +24,12 @@ Install the Python SDK using pip:
 pip install pr-pilot
 ```
 
-Use the `create_task` and `get_task` functions to automate your Github project:
+Use the `create_task`, `get_task` and `wait_for_result` functions to automate your Github project:
 
 ```python
-import time
-
-from pr_pilot.util import create_task, get_task
+from pr_pilot.util import create_task, wait_for_result
 
 task = create_task("PR-Pilot-AI/pr-pilot", "Summarize the README file and create a Github issue with the result.")
-
-while task.status != "completed":
-    print(f"Waiting for task to complete. Status: {task.status}")
-    task = get_task(task.id)
-    time.sleep(5)
-    
+result = wait_for_result(task)
 print(f"Task completed. Result:\n\n{task.result}")
 ```

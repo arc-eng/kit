@@ -1,10 +1,17 @@
 import logging
 import os
+import time
 
 import pr_pilot
 from pr_pilot import Task, Prompt
 
+# Set log level to INFO
+logging.basicConfig(level=logging.INFO)
+
 logger = logging.getLogger(__name__)
+
+MAX_RESULT_WAIT_TIME = 60 * 4  # 4 minutes
+POLL_INTERVAL = 5
 
 
 def _get_config_from_env():
@@ -48,3 +55,17 @@ def get_task(task_id: str) -> Task:
     with pr_pilot.ApiClient(_get_config_from_env()) as api_client:
         api_instance = pr_pilot.TaskRetrievalApi(api_client)
         return api_instance.tasks_retrieve(task_id)
+
+
+def wait_for_result(task: Task, log=True) -> str:
+    """Wait for the task to be completed and return the result."""
+    start_time = time.time()
+    while task.status not in ["completed", "failed"]:
+        if time.time() - start_time > MAX_RESULT_WAIT_TIME:
+            raise TimeoutError("The task took too long to complete.")
+        if log:
+            logger.info(f"Task status: {task.status}. Waiting for completion...")
+        task = get_task(task.id)
+
+        time.sleep(POLL_INTERVAL)
+    return task.result
