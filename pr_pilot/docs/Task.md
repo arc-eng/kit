@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **status** | **str** |  | 
 **created** | **datetime** |  | [readonly] 
 **result** | **str** |  | [optional] 
+**issue_number** | **int** |  | [optional] 
+**pr_number** | **int** |  | [optional] 
 
 ## Example
 
