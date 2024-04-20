@@ -3,16 +3,15 @@
 </div>
 
 <p align="center">
-  <a href="https://github.com/marketplace/pr-pilot-ai"><b>Install</b></a> |
+  <a href="https://github.com/apps/pr-pilot-ai/installations/new"><b>Install</b></a> |
   <a href="https://docs.pr-pilot.ai">Documentation</a> | 
   <a href="https://www.pr-pilot.ai/blog">Blog</a> | 
   <a href="https://www.pr-pilot.ai">Website</a>
 </p>
 
+# PR Pilot - Python SDK
 
-# 🤖 PR Pilot - Python SDK
-
-PR Pilot is a **text-to-task** automation platform that enables GitHub developers to trigger AI-driven development tasks in their repositories from anywhere.
+**[PR Pilot](https://github.com/PR-Pilot-AI/pr-pilot)** is a platform that enables developers to create agentic workflows for Github Projects.
 
 This project contains the official Python SDK.
 
