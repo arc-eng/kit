@@ -30,11 +30,17 @@ def set_github_action_output(key: str, value: str):
     output_file = os.getenv('GITHUB_OUTPUT')
 
     # Ensure the output file path is available
-    if output_file is not None:
-        with open(output_file, "a") as file:
-            file.write(f"{key}={value}\n")
-    else:
+    if output_file is None:
         logger.debug("GITHUB_OUTPUT environment variable is not set.")
+        return
+
+    with open(output_file, "a") as file:
+        if "\n" in value:
+            # Handle multiline value
+            file.write(f"{key}<<EOF\n{value}\nEOF\n")
+        else:
+            # Write the key-value pair to the output file
+            file.write(f"{key}={value}\n")
 
 
 def set_github_step_summary(summary: str):
@@ -87,6 +93,7 @@ def wait_for_result(task: Task, log=True, write_step_summary=True) -> str:
         time.sleep(POLL_INTERVAL)
     if write_step_summary:
         dashboard_url = f"https://app.pr-pilot.ai/dashboard/tasks/{str(task.id)}/"
-        markdown_link = f"[Event Log]({dashboard_url})"
-        set_github_step_summary(f"{task.result}\n\n{markdown_link}")
+        markdown_link = f"📋 **[Log]({dashboard_url})**"
+        set_github_step_summary(f"---\n\n{task.result}\n\n---\n{markdown_link}")
+        set_github_action_output("task-result", task.result)
     return task.result
