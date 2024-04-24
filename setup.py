@@ -10,7 +10,7 @@ with open(requirements_path) as f:
 
 setup(
     name='pr_pilot',
-    version='1.3.0',
+    version='1.3.1',
     packages=find_packages(),
     install_requires=required,
     python_requires='>=3.6',
