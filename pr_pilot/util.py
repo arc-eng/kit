@@ -91,9 +91,12 @@ def wait_for_result(task: Task, log=True, write_step_summary=True) -> str:
         task = get_task(task.id)
 
         time.sleep(POLL_INTERVAL)
+    set_github_action_output("task-result", task.result)
     if write_step_summary:
         dashboard_url = f"https://app.pr-pilot.ai/dashboard/tasks/{str(task.id)}/"
         markdown_link = f"📋 **[Log]({dashboard_url})**"
         set_github_step_summary(f"---\n\n{task.result}\n\n---\n{markdown_link}")
-        set_github_action_output("task-result", task.result)
+    if task.status == "failed":
+        raise ValueError(f"Task failed: {task.result}")
+
     return task.result
