@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **result** | **str** |  | [optional] 
 **issue_number** | **int** |  | [optional] 
 **pr_number** | **int** |  | [optional] 
+**gpt_model** | **str** |  | [optional] 
 
 ## Example
 
