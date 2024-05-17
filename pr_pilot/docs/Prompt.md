@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **github_repo** | **str** | The full name of the Github repository, e.g. &#39;owner/repo&#39; | 
 **issue_number** | **int** | Number of the issue if task is triggered in the context of an issue | [optional] 
 **pr_number** | **int** | Number of the PR if task is triggered in the context of a PR | [optional] 
+**gpt_model** | **str** | The GPT model to use for the task | [optional] [default to 'gpt-4-turbo']
 
 ## Example
 
