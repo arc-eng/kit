@@ -11,12 +11,17 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 MAX_RESULT_WAIT_TIME = 60 * 4  # 4 minutes
-POLL_INTERVAL = 5
+POLL_INTERVAL = int(os.getenv("POLL_INTERVAL", "5"))
+PR_PILOT_HOST = os.getenv("PR_PILOT_HOST", "https://app.pr-pilot.ai")
+
+
+if POLL_INTERVAL <= 1:
+    raise ValueError("POLL_INTERVAL must be greater than 1 seconds.")
 
 
 def _get_config_from_env():
     configuration = pr_pilot.Configuration(
-        host="https://app.pr-pilot.ai",
+        host=PR_PILOT_HOST,
     )
     if not os.environ.get("PR_PILOT_API_KEY"):
         raise ValueError("Please set the PR_PILOT_API_KEY environment variable.")
@@ -81,7 +86,7 @@ def get_task(task_id: str) -> Task:
         return api_instance.tasks_retrieve(task_id)
 
 
-def wait_for_result(task: Task, log=True, write_step_summary=True) -> str:
+def wait_for_result(task: Task, log=True, write_step_summary=True, poll_interval=POLL_INTERVAL) -> str:
     """Wait for the task to be completed and return the result."""
     start_time = time.time()
     while task.status not in ["completed", "failed"]:
@@ -90,8 +95,7 @@ def wait_for_result(task: Task, log=True, write_step_summary=True) -> str:
         if log:
             logger.info(f"Task status: {task.status}. Waiting for completion...")
         task = get_task(task.id)
-
-        time.sleep(POLL_INTERVAL)
+        time.sleep(poll_interval)
     set_github_action_output("task-result", task.result)
     if write_step_summary:
         dashboard_url = f"https://app.pr-pilot.ai/dashboard/tasks/{str(task.id)}/"
