@@ -73,7 +73,7 @@ def create_task(repo: str, prompt: str, log=True, pr_number=None, issue_number=N
         if issue_number is not None:
             issue_number = int(issue_number)
 
-        image_base64 = base64.encode(image.read_bytes()).decode("utf-8") if image else None
+        image_base64 = base64.b64encode(image.read_bytes()).decode("utf-8") if image else None
         task = api_instance.tasks_create(Prompt(prompt=prompt, github_repo=repo, issue_number=issue_number,
                                                 pr_number=pr_number, gpt_model=gpt_model, image=image_base64))
         dashboard_url = f"https://app.pr-pilot.ai/dashboard/tasks/{str(task.id)}/"
