@@ -64,7 +64,8 @@ def set_github_step_summary(summary: str):
         logger.debug("GITHUB_STEP_SUMMARY environment variable is not set.")
 
 
-def create_task(repo: str, prompt: str, log=True, pr_number=None, issue_number=None, gpt_model=None, image: Optional[Path]=None) -> Task:
+def create_task(repo: str, prompt: str, log=True, pr_number=None, branch=None,
+                issue_number=None, gpt_model=None, image: Optional[Path]=None) -> Task:
     """Create a task for the specified repository with the given prompt."""
     with pr_pilot.ApiClient(_get_config_from_env()) as api_client:
         api_instance = pr_pilot.TaskCreationApi(api_client)
@@ -75,7 +76,8 @@ def create_task(repo: str, prompt: str, log=True, pr_number=None, issue_number=N
 
         image_base64 = base64.b64encode(image.read_bytes()).decode("utf-8") if image else None
         task = api_instance.tasks_create(Prompt(prompt=prompt, github_repo=repo, issue_number=issue_number,
-                                                pr_number=pr_number, gpt_model=gpt_model, image=image_base64))
+                                                branch=branch, pr_number=pr_number, gpt_model=gpt_model,
+                                                image=image_base64))
         dashboard_url = f"https://app.pr-pilot.ai/dashboard/tasks/{str(task.id)}/"
         set_github_action_output("task-id", str(task.id))
         set_github_action_output("task-url", dashboard_url)

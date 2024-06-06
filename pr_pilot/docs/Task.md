@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **issue_number** | **int** |  | [optional] 
 **pr_number** | **int** |  | [optional] 
 **gpt_model** | **str** |  | [optional] 
+**branch** | **str** |  | 
 
 ## Example
 
