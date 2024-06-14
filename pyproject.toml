@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "pr_pilot"
+version = "1.5.4"
+description = "Python SDK for PR Pilot, a text-to-task automation platform for Github."
+authors = ["Marco Lamina <marco@pr-pilot.ai>"]
+license = "GPL-3.0"
+readme = "README.md"
+repository = "https://github.com/PR-Pilot-AI/pr-pilot-python"
+
+[tool.poetry.dependencies]
+python = ">=3.10"
+pydantic = "<2.7"
+urllib3 = "2.2.1"
+python-dateutil = "2.9.0"
+wheel = "0.42.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
