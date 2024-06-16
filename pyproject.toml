@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "pr_pilot"
-version = "1.6.0"
+name = "pr-pilot"
+version = "1.6.1"
 description = "Python SDK for PR Pilot, a text-to-task automation platform for Github."
 authors = ["Marco Lamina <marco@pr-pilot.ai>"]
 license = "GPL-3.0"
