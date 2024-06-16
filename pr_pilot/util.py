@@ -93,6 +93,13 @@ def get_task(task_id: str) -> Task:
         return api_instance.tasks_retrieve(task_id)
 
 
+def list_tasks() -> list[Task]:
+    """List the last 10 tasks."""
+    with pr_pilot.ApiClient(_get_config_from_env()) as api_client:
+        api_instance = pr_pilot.TaskRetrievalApi(api_client)
+        return api_instance.tasks_list()
+
+
 def wait_for_result(task: Task, log=True, write_step_summary=True, poll_interval=POLL_INTERVAL) -> str:
     """Wait for the task to be completed and return the result."""
     start_time = time.time()

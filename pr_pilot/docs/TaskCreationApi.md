@@ -12,6 +12,8 @@ Method | HTTP request | Description
 
 
 
+Create a new task.
+
 ### Example
 
 * Api Key Authentication (apiKeyAuth):
