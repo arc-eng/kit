@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **issue_number** | **int** | Number of the issue if task is triggered in the context of an issue | [optional] 
 **pr_number** | **int** | Number of the PR if task is triggered in the context of a PR | [optional] 
 **branch** | **str** | A branch for PR Pilot to run this task on | [optional] 
-**gpt_model** | **str** | The GPT model to use for the task | [optional] [default to 'gpt-4-turbo']
+**gpt_model** | **str** | The GPT model to use for the task | [optional] [default to 'gpt-4o']
 **image** | **str** | An image to be used in the task | [optional] 
 
 ## Example
