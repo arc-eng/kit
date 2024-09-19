@@ -9,9 +9,9 @@
   <a href="https://www.pr-pilot.ai">Website</a>
 </p>
 
-# PR Pilot - Python SDK
+# Arcane Kit
 
-**[PR Pilot](https://github.com/PR-Pilot-AI/pr-pilot)** is a platform that enables developers to create agentic workflows for Github Projects.
+Welcome to the development kit for **[Arcane Engine](https://arcane.engineer/engine)**, a platform that enables developers to create agentic workflows easily.
 
 This project contains the official Python SDK.
 
@@ -20,15 +20,17 @@ This project contains the official Python SDK.
 Install the Python SDK using pip:
 
 ```bash
-pip install pr-pilot
+pip install arcane-engine
 ```
 
-Use the `create_task`, `get_task` and `wait_for_result` functions to automate your Github project:
+Use the `ArcaneEngine` class to create tasks and interact with the engine. Here's an example of how to create a task and wait for the result:
 
 ```python
-from pr_pilot.util import create_task, wait_for_result
+from arcane.engine import ArcaneEngine
+from arcane.util import wait_for_result
 
-task = create_task("PR-Pilot-AI/pr-pilot", "Summarize the README file and create a Github issue with the result.")
+engine = ArcaneEngine()
+task = engine.create_task("arc-eng/kit", "Summarize the README file and create a Github issue with the result.")
 result = wait_for_result(task)
 print(f"Task completed. Result:\n\n{task.result}")
 ```
