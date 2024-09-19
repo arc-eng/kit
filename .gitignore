@@ -1,7 +1,5 @@
 venv
 pr_pilot_README.md
-.idea
-*.iml
 .openapi-generator
 __pycache__
 pr_pilot.egg_info
