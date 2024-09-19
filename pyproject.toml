@@ -6,6 +6,9 @@ authors = ["Marco Lamina <marco@arcane.engineer>"]
 license = "GPL-3.0"
 readme = "README.md"
 repository = "https://github.com/arc-eng/kit"
+packages = [
+    { include = "arcane" }
+]
 
 [tool.poetry.dependencies]
 python = ">=3.10"
