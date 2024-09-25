@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 MAX_RESULT_WAIT_TIME = 60 * 4  # 4 minutes
 POLL_INTERVAL = int(os.getenv("POLL_INTERVAL", "5"))
-PR_PILOT_HOST = os.getenv("PR_PILOT_HOST", "https://arcane.engine")
+PR_PILOT_HOST = os.getenv("PR_PILOT_HOST", "https://arcane.engineer")
 
 if POLL_INTERVAL <= 1:
     raise ValueError("POLL_INTERVAL must be greater than 1 seconds.")
@@ -40,7 +40,7 @@ class ArcaneEngine:
             task = api_instance.tasks_create(Prompt(prompt=prompt, github_repo=repo, issue_number=issue_number,
                                                     branch=branch, pr_number=pr_number, gpt_model=gpt_model,
                                                     image=image_base64))
-            dashboard_url = f"https://arcane.engine/dashboard/tasks/{str(task.id)}/"
+            dashboard_url = f"https://arcane.engineer/dashboard/tasks/{str(task.id)}/"
             set_github_action_output("task-id", str(task.id))
             set_github_action_output("task-url", dashboard_url)
             if log:

@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 MAX_RESULT_WAIT_TIME = 60 * 4  # 4 minutes
 POLL_INTERVAL = int(os.getenv("POLL_INTERVAL", "5"))
-PR_PILOT_HOST = os.getenv("PR_PILOT_HOST", "https://arcane.engine")
+PR_PILOT_HOST = os.getenv("PR_PILOT_HOST", "https://arcane.engineer")
 
 
 if POLL_INTERVAL <= 1:
@@ -78,7 +78,7 @@ def create_task(repo: str, prompt: str, log=True, pr_number=None, branch=None,
         task = api_instance.tasks_create(Prompt(prompt=prompt, github_repo=repo, issue_number=issue_number,
                                                 branch=branch, pr_number=pr_number, gpt_model=gpt_model,
                                                 image=image_base64))
-        dashboard_url = f"https://arcane.engine/dashboard/tasks/{str(task.id)}/"
+        dashboard_url = f"https://arcane.engineer/dashboard/tasks/{str(task.id)}/"
         set_github_action_output("task-id", str(task.id))
         set_github_action_output("task-url", dashboard_url)
         if log:
@@ -112,7 +112,7 @@ def wait_for_result(task: Task, log=True, write_step_summary=True, poll_interval
         time.sleep(poll_interval)
     set_github_action_output("task-result", task.result)
     if write_step_summary:
-        dashboard_url = f"https://arcane.engine/dashboard/tasks/{str(task.id)}/"
+        dashboard_url = f"https://arcane.engineer/dashboard/tasks/{str(task.id)}/"
         markdown_link = f"📋 **[Log]({dashboard_url})**"
         set_github_step_summary(f"---\n\n{task.result}\n\n---\n{markdown_link}")
     if task.status == "failed":
