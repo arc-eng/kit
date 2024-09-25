@@ -413,7 +413,7 @@ conf = pr_pilot.Configuration(
                 'description': "Local development server",
             },
             {
-                'url': "https://app.pr-pilot.ai",
+                'url': "https://arcane.engine",
                 'description': "Production API",
             }
         ]
