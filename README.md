@@ -1,12 +1,11 @@
 <div align="center">
-<img src="https://avatars.githubusercontent.com/ml/17635?s=140&v=" width="100" alt="PR Pilot Logo">
+<img src="https://avatars.githubusercontent.com/ml/17635?s=140&v=" width="100" alt="Arcane Engine Logo">
 </div>
 
 <p align="center">
-  <a href="https://github.com/apps/pr-pilot-ai/installations/new"><b>Install</b></a> |
-  <a href="https://docs.pr-pilot.ai">Documentation</a> | 
-  <a href="https://www.pr-pilot.ai/blog">Blog</a> | 
-  <a href="https://www.pr-pilot.ai">Website</a>
+  <a href="https://github.com/apps/arcane-engine/installations/new"><b>Install</b></a> |
+  <a href="https://docs.arcane.engineer">Documentation</a> |
+  <a href="https://arcane.engineer/">Website</a>
 </p>
 
 # Arcane Kit

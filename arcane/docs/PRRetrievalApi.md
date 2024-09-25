@@ -1,4 +1,4 @@
-# pr_pilot.PRRetrievalApi
+# arcane.PRRetrievalApi
 
 All URIs are relative to *http://localhost:8000*
 
@@ -28,7 +28,7 @@ from pprint import pprint
 # Defining the host is optional and defaults to http://localhost:8000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = arcane.Configuration(
-    host="http://localhost:8000"
+    host = "http://localhost:8000"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -46,7 +46,7 @@ configuration.api_key['apiKeyAuth'] = os.environ["API_KEY"]
 with arcane.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = arcane.PRRetrievalApi(api_client)
-    repo_branch_input = arcane.RepoBranchInput()  # RepoBranchInput | 
+    repo_branch_input = arcane.RepoBranchInput() # RepoBranchInput | 
 
     try:
         api_response = api_instance.resolve_pr_create(repo_branch_input)
