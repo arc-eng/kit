@@ -3,33 +3,33 @@
 </div>
 
 <p align="center">
-  <a href="https://github.com/apps/arcane-engine/installations/new"><b>Install</b></a> |
+  <a href="https://github.com/apps/arcane-engine/installations/new"><b>Installer</b></a> |
   <a href="https://docs.arcane.engineer">Documentation</a> |
-  <a href="https://arcane.engineer/">Website</a>
+  <a href="https://arcane.engineer/">Site Web</a>
 </p>
 
-# Arcane Kit
+# Kit Arcane
 
-Welcome to the development kit for **[Arcane Engine](https://arcane.engineer/engine)**, a platform that enables developers to create agentic workflows easily.
+Bienvenue dans le kit de développement pour **[Arcane Engine](https://arcane.engineer/engine)**, une plateforme qui permet aux développeurs de créer facilement des workflows agentiques.
 
-This project contains the official Python SDK.
+Ce projet contient le SDK Python officiel.
 
-## Usage
+## Utilisation
 
-Install the Python SDK using pip:
+Installez le SDK Python en utilisant pip :
 
 ```bash
 pip install arcane-engine
 ```
 
-Use the `ArcaneEngine` class to create tasks and interact with the engine. Here's an example of how to create a task and wait for the result:
+Utilisez la classe `ArcaneEngine` pour créer des tâches et interagir avec le moteur. Voici un exemple de création d'une tâche et d'attente du résultat :
 
 ```python
 from arcane.engine import ArcaneEngine
 from arcane.util import wait_for_result
 
 engine = ArcaneEngine()
-task = engine.create_task("arc-eng/kit", "Summarize the README file and create a Github issue with the result.")
+task = engine.create_task("arc-eng/kit", "Résumez le fichier README et créez une issue Github avec le résultat.")
 result = wait_for_result(task)
-print(f"Task completed. Result:\n\n{task.result}")
+print(f"Tâche terminée. Résultat :\n\n{task.result}")
 ```
