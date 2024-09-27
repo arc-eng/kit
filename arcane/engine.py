@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Optional
 
 import arcane
-from arcane import Task, Prompt
+from arcane import Task, Prompt, Configuration
 from arcane.util import _get_config_from_env, set_github_action_output
 
 # Set log level to INFO
@@ -72,7 +72,7 @@ class ArcaneEngine:
         :param key_name: Name to be given to the API key
         :return: They API key
         """
-        with arcane.ApiClient() as api_client:
+        with arcane.ApiClient(Configuration(host=ARCANE_API_HOST)) as api_client:
             api_instance = arcane.AuthenticationApi(api_client)
             params = arcane.Input(github_token=github_token, key_name=key_name)
             return api_instance.exchange_github_token_create(params).api_key
