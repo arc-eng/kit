@@ -52,13 +52,11 @@ class ArcaneEngine:
                 logger.info(f"Arcane Engine task created: {dashboard_url}")
             return task
 
-
     def get_task(self, task_id: str) -> Task:
         """Get the task with the specified ID."""
         with arcane.ApiClient(self.config) as api_client:
             api_instance = arcane.TaskRetrievalApi(api_client)
             return api_instance.tasks_retrieve(task_id)
-
 
     def list_tasks(self) -> list[Task]:
         """List the last 10 tasks."""
@@ -66,14 +64,15 @@ class ArcaneEngine:
             api_instance = arcane.TaskRetrievalApi(api_client)
             return api_instance.tasks_list()
 
-    def create_api_key(self, github_token: str, key_name: str) -> str:
+    @staticmethod
+    def create_api_key(github_token: str, key_name: str) -> str:
         """
         Create an API key for the user with the specified GitHub token.
         :param github_token: A valid Github token
         :param key_name: Name to be given to the API key
         :return: They API key
         """
-        with arcane.ApiClient(self.config) as api_client:
+        with arcane.ApiClient() as api_client:
             api_instance = arcane.AuthenticationApi(api_client)
             params = arcane.Input(github_token=github_token, key_name=key_name)
             return api_instance.exchange_github_token_create(params).api_key
