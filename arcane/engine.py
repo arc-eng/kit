@@ -23,8 +23,13 @@ if POLL_INTERVAL <= 1:
 
 class ArcaneEngine:
 
-    def __init__(self):
-        self.config = _get_config_from_env()
+    def __init__(self, api_key: str = None):
+        if api_key:
+            self.config = arcane.Configuration(
+                host=ARCANE_API_HOST, api_key={"apiKeyAuth": api_key}
+            )
+        else:
+            self.config = _get_config_from_env()
 
     def create_task(self, repo: str, prompt: str, log=True, pr_number=None, branch=None,
                     issue_number=None, gpt_model=None, image: Optional[Path]=None) -> Task:
