@@ -17,17 +17,17 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
-class PRNumberResponse(BaseModel):
+class Output(BaseModel):
     """
-    PRNumberResponse
+    Output
     """ # noqa: E501
-    pr_number: StrictInt
-    __properties: ClassVar[List[str]] = ["pr_number"]
+    api_key: StrictStr
+    __properties: ClassVar[List[str]] = ["api_key"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -47,7 +47,7 @@ class PRNumberResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PRNumberResponse from a JSON string"""
+        """Create an instance of Output from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,7 +72,7 @@ class PRNumberResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PRNumberResponse from a dict"""
+        """Create an instance of Output from a dict"""
         if obj is None:
             return None
 
@@ -80,7 +80,7 @@ class PRNumberResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "pr_number": obj.get("pr_number")
+            "api_key": obj.get("api_key")
         })
         return _obj
 
