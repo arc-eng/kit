@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **gpt_model** | **str** | The GPT model to use for the task | [optional] [default to 'gpt-4o']
 **image** | **str** | An image to be used in the task | [optional] 
 **credit_limit** | **float** | Maximum amounts of credits this task is allowed to use up | [optional] [default to 200.0]
+**output_format** | **str** | The format of the output, e.g. html, markdown, Python, etc. | [optional] 
+**output_structure** | **str** | Description of how the output should be structured. Only used if output_format is set. | [optional] 
 
 ## Example
 
