@@ -32,7 +32,7 @@ class ArcaneEngine:
             self.config = _get_config_from_env()
 
     def create_task(self, repo: str, prompt: str, log=True, pr_number=None, branch=None,
-                    issue_number=None, gpt_model=None, image: Optional[Path]=None) -> Task:
+                    issue_number=None, gpt_model=None, image: Optional[Path]=None, **kwargs) -> Task:
         """Create a task for the specified repository with the given prompt."""
         with arcane.ApiClient(self.config) as api_client:
             api_instance = arcane.TaskCreationApi(api_client)
@@ -44,7 +44,7 @@ class ArcaneEngine:
             image_base64 = base64.b64encode(image.read_bytes()).decode("utf-8") if image else None
             task = api_instance.tasks_create(Prompt(prompt=prompt, github_repo=repo, issue_number=issue_number,
                                                     branch=branch, pr_number=pr_number, gpt_model=gpt_model,
-                                                    image=image_base64))
+                                                    image=image_base64), **kwargs)
             dashboard_url = f"https://arcane.engineer/dashboard/tasks/{str(task.id)}/"
             set_github_action_output("task-id", str(task.id))
             set_github_action_output("task-url", dashboard_url)
