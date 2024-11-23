@@ -76,3 +76,9 @@ class ArcaneEngine:
             api_instance = arcane.AuthenticationApi(api_client)
             params = arcane.Input(github_token=github_token, key_name=key_name)
             return api_instance.exchange_github_token_create(params).api_key
+
+    def is_repository_installed(self, repo_owner: str, repo_name: str) -> bool:
+        """Check if the Arcane Engine is installed on the repository."""
+        with arcane.ApiClient(self.config) as api_client:
+            api_instance = arcane.RepositoryInstallationApi(api_client)
+            return api_instance.repositories_installation_status_retrieve(repo_name, repo_owner).installed

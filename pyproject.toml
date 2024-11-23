@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "arcane-engine"
-version = "1.12.0"
+version = "1.12.1"
 description = "Python SDK for Arcane Engine, a text-to-task automation platform."
 authors = ["Marco Lamina <marco@arcane.engineer>"]
 license = "GPL-3.0"
